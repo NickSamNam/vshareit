@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">v.share.it for Reddit</string>
+    <string name="app_name">v.share.it</string>
+    <string name="send_label">v.redd.it handler</string>
+    <string name="share_label">Share with...</string>
 </resources>
