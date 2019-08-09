@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">v.share.it</string>
     <string name="send_label">v.redd.it handler</string>
-    <string name="share_label">Share with...</string>
+    <string name="share_label">Share with…</string>
+    <string name="toast_invalid_url">Invalid URL</string>
+    <string name="toast_video_not_found">Video not found</string>
+    <string name="toast_server_error">Server error</string>
 </resources>
