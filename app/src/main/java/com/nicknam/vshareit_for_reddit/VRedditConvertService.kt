@@ -23,7 +23,7 @@ class VRedditConvertService : IntentService("VRedditConvertService") {
         val split = url.split('/')
         val filename = split[split.size - 2]
 
-        FFmpeg.execute("-y -i $url -c copy -bsf:a aac_adtstoasc $externalCacheDir/$filename.mp4")
+        FFmpeg.execute("-y -err_detect ignore_err -i $url -c copy -bsf:a aac_adtstoasc $externalCacheDir/$filename.mp4")
 
         val rc = FFmpeg.getLastReturnCode()
         val output = FFmpeg.getLastCommandOutput()
