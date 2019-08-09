@@ -10,7 +10,7 @@ import android.widget.Toast
 
 class ShareActivity : AppCompatActivity() {
 
-    private var url: String = ""
+    lateinit var uri: Uri
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,13 +26,6 @@ class ShareActivity : AppCompatActivity() {
         }
 
         finish()
-
-//                val shareIntent: Intent = Intent().apply {
-//                    action = Intent.ACTION_SEND
-//                    putExtra(Intent.EXTRA_STREAM, data)
-//                    type = "video/mp4"
-//                }
-//                startActivity(Intent.createChooser(shareIntent, resources.getText(R.string.share_label)))
     }
 
     private fun handleSendText(intent: Intent) {
@@ -43,29 +36,26 @@ class ShareActivity : AppCompatActivity() {
                 else -> it
             }
 
-            val uri: Uri = Uri.parse(Uri.decode(baseUrl))
+            uri = Uri.parse(Uri.decode(baseUrl))
                 .buildUpon()
                 .appendPath("DASHPlaylist.mpd")
                 .build()
 
-            url = uri.toString()
-
-            if (!Patterns.WEB_URL.matcher(url).matches() || uri.authority != "v.redd.it"
+            if (!Patterns.WEB_URL.matcher(uri.toString()).matches() || uri.authority != "v.redd.it"
                 || uri.path?.removePrefix("/")?.split('/')?.size ?: 0 != 2
             )
                 Toast.makeText(this, R.string.toast_invalid_url, Toast.LENGTH_SHORT).show()
             else
-                CheckHttpConnectionAsyncTask(::httpConnectionCheckCallback).execute(url)
+                CheckHttpConnectionAsyncTask(::httpConnectionCheckCallback).execute(uri.toString())
         }
     }
 
     private fun httpConnectionCheckCallback(responseCode: @ParameterName(name = "responseCode") Int?) {
         when (responseCode) {
             200 -> {
-                // TODO: start conversion
-                Toast.makeText(this, "CONVERTING", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, R.string.toast_fetching_video, Toast.LENGTH_SHORT).show()
                 startService(Intent(this, VRedditConvertService::class.java).apply {
-                    putExtra(VRedditConvertService.EXTRA_URL, url)
+                    putExtra(Intent.EXTRA_STREAM, uri)
                 })
             }
             403 -> Toast.makeText(this, R.string.toast_video_not_found, Toast.LENGTH_SHORT).show()
