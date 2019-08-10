@@ -11,6 +11,8 @@ import com.arthenica.mobileffmpeg.FFmpeg.RETURN_CODE_CANCEL
 import com.arthenica.mobileffmpeg.FFmpeg.RETURN_CODE_SUCCESS
 import java.io.File
 
+private const val FILE_PROVIDER_AUTHORITY = "com.nicknam.fileprovider"
+
 
 /**
  * An [IntentService] subclass for handling asynchronous task requests in
@@ -22,11 +24,11 @@ class VRedditConvertService : IntentService("VRedditConvertService") {
         if (intent == null)
             return
         val inputUri: Uri = intent.getParcelableExtra<Uri>(Intent.EXTRA_STREAM) ?: return
-        val filename = inputUri.path!!.split('/')[1]
+        val filename = inputUri.pathSegments.first() + ".mp4"
         val videoCachePath = File(externalCacheDir ?: cacheDir, "videos")
-        val outputFile = File(videoCachePath, "$filename.mp4")
+        val outputFile = File(videoCachePath, filename)
         val outputUri = Uri.fromFile(outputFile)
-        val contentUri: Uri = FileProvider.getUriForFile(baseContext, "com.nicknam.fileprovider", outputFile)
+        val contentUri: Uri = FileProvider.getUriForFile(baseContext, FILE_PROVIDER_AUTHORITY, outputFile)
 
         FFmpeg.execute("-y -err_detect ignore_err -i $inputUri -c copy -bsf:a aac_adtstoasc $outputUri")
 

@@ -27,7 +27,7 @@
                 android:excludeFromRecents="true"
                 android:launchMode="singleInstance"
                 android:theme="@style/Theme.Transparent">
-            <intent-filter android:label="@string/send_label">
+            <intent-filter android:label="@string/send_action_label">
                 <action android:name="android.intent.action.SEND"/>
 
                 <category android:name="android.intent.category.DEFAULT"/>

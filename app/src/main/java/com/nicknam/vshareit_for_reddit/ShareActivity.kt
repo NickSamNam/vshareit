@@ -8,6 +8,11 @@ import android.util.Patterns
 import android.view.WindowManager
 import android.widget.Toast
 
+private const val HTTP_SCHEME = "http://"
+private const val HTTPS_SCHEME = "https://"
+private const val V_REDDIT_AUTHORITY = "v.redd.it"
+private const val DASH_PATH_SEGMENT = "DASHPlaylist.mpd"
+
 class ShareActivity : AppCompatActivity() {
 
     lateinit var uri: Uri
@@ -31,19 +36,17 @@ class ShareActivity : AppCompatActivity() {
     private fun handleSendText(intent: Intent) {
         intent.getStringExtra(Intent.EXTRA_TEXT)?.let {
             val baseUrl = when {
-                it.startsWith("http://") -> it.replace("http://", "https://")
-                !it.startsWith("https://") -> "https://$it"
+                it.startsWith(HTTP_SCHEME) -> it.replace(HTTP_SCHEME, HTTPS_SCHEME)
+                !it.startsWith(HTTPS_SCHEME) -> HTTPS_SCHEME + it
                 else -> it
             }
-
             uri = Uri.parse(Uri.decode(baseUrl))
-                .buildUpon()
-                .appendPath("DASHPlaylist.mpd")
-                .build()
+            if (uri.lastPathSegment != DASH_PATH_SEGMENT)
+                uri = uri.buildUpon()
+                    .appendPath(DASH_PATH_SEGMENT)
+                    .build()
 
-            if (!Patterns.WEB_URL.matcher(uri.toString()).matches() || uri.authority != "v.redd.it"
-                || uri.path?.removePrefix("/")?.split('/')?.size ?: 0 != 2
-            )
+            if (!Patterns.WEB_URL.matcher(uri.toString()).matches() || uri.authority != V_REDDIT_AUTHORITY || uri.pathSegments.size != 2)
                 Toast.makeText(this, R.string.toast_invalid_url, Toast.LENGTH_SHORT).show()
             else
                 CheckHttpConnectionAsyncTask(::httpConnectionCheckCallback).execute(uri.toString())
