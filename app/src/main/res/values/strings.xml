@@ -1,5 +1,5 @@
-<resources>
-    <string name="app_name">v.share.it</string>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="app_name" translatable="false">v.share.it</string>
     <string name="send_action_label">v.redd.it handler</string>
     <string name="share_label">Share</string>
     <string name="toast_invalid_url">Invalid URL</string>
@@ -7,4 +7,11 @@
     <string name="toast_server_error">Server error</string>
     <string name="toast_fetching_video">Fetching video…</string>
     <string name="toast_ffmpeg_error">Error fetching video</string>
+    <string name="tv_instructions">Instructions:</string>
+    <string name="tv_instruction_one">1. Share v.redd.it link</string>
+    <string name="tv_instruction_two">2. Select v.redd.it handler in the share menu</string>
+    <string name="tv_instruction_three">3. Share with your favorite app</string>
+    <string name="tv_or">Or</string>
+    <string name="et_url_hint">Paste your v.redd.it link here</string>
+    <string name="btn_share">Share</string>
 </resources>
