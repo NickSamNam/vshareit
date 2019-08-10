@@ -3,7 +3,9 @@ package com.nicknam.vshareit_for_reddit
 import android.app.IntentService
 import android.content.Intent
 import android.net.Uri
+import android.os.Handler
 import android.util.Log
+import android.widget.Toast
 import androidx.core.content.FileProvider
 import com.arthenica.mobileffmpeg.Config
 import com.arthenica.mobileffmpeg.FFmpeg
@@ -13,6 +15,7 @@ import java.io.File
 
 private const val FILE_PROVIDER_AUTHORITY = "com.nicknam.fileprovider"
 
+lateinit var handler: Handler
 
 /**
  * An [IntentService] subclass for handling asynchronous task requests in
@@ -20,6 +23,12 @@ private const val FILE_PROVIDER_AUTHORITY = "com.nicknam.fileprovider"
  * helper methods.
  */
 class VRedditConvertService : IntentService("VRedditConvertService") {
+
+    override fun onCreate() {
+        super.onCreate()
+        handler = Handler()
+    }
+
     override fun onHandleIntent(intent: Intent?) {
         if (intent == null)
             return
@@ -51,6 +60,9 @@ class VRedditConvertService : IntentService("VRedditConvertService") {
             }
             else -> {
                 Log.e(Config.TAG, String.format("Command execution failed with rc=%d and output=%s.", rc, co))
+                handler.post {
+                    Toast.makeText(applicationContext, R.string.toast_ffmpeg_error, Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }

@@ -1,6 +1,7 @@
 package com.nicknam.vshareit_for_reddit
 
 import android.os.AsyncTask
+import java.io.IOException
 import java.net.HttpURLConnection
 import java.net.URL
 
@@ -8,7 +9,11 @@ class CheckHttpConnectionAsyncTask(private val callback: (responseCode: Int?) ->
     override fun doInBackground(vararg params: String?): Int {
         val url = URL(params[0])
         val connection = url.openConnection() as HttpURLConnection
-        return connection.responseCode
+        return try {
+            connection.responseCode
+        } catch (e: IOException) {
+            -1
+        }
     }
 
     override fun onPostExecute(result: Int?) {
