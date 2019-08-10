@@ -24,4 +24,4 @@ fun generateDownloadUri(url: String): Uri {
 }
 
 fun validateDownloadUri(uri: Uri): Boolean =
-    !Patterns.WEB_URL.matcher(uri.toString()).matches() || uri.authority != V_REDDIT_AUTHORITY || uri.pathSegments.size != 2
+    Patterns.WEB_URL.matcher(uri.toString()).matches() && uri.authority == V_REDDIT_AUTHORITY && uri.pathSegments.size == 2

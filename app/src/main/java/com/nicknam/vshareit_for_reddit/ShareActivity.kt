@@ -31,7 +31,7 @@ class ShareActivity : AppCompatActivity() {
     private fun handleSendText(intent: Intent) {
         val baseUrl = intent.getStringExtra(Intent.EXTRA_TEXT) ?: return
         val downloadUri = generateDownloadUri(baseUrl)
-        if (validateDownloadUri(downloadUri))
+        if (!validateDownloadUri(downloadUri))
             Toast.makeText(this, R.string.toast_invalid_url, Toast.LENGTH_SHORT).show()
         else {
             CheckHttpConnectionAsyncTask {
