@@ -20,6 +20,7 @@ class ShareActivity : AppCompatActivity() {
                     handleSendText(intent)
                 }
             }
+            Intent.ACTION_VIEW -> handleViewIntent(intent)
         }
 
         finish()
@@ -27,5 +28,9 @@ class ShareActivity : AppCompatActivity() {
 
     private fun handleSendText(intent: Intent) {
         share(this, intent.getStringExtra(Intent.EXTRA_TEXT) ?: return)
+    }
+
+    private fun handleViewIntent(intent: Intent) {
+        share(this, intent.dataString ?: "")
     }
 }
