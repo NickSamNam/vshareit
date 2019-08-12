@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
         btnShare.setOnClickListener(this::onShareClick)
     }
 
+    @Suppress("UNUSED_PARAMETER")
     private fun onShareClick(v: View) {
         share(this, etUrl.text.toString())
     }

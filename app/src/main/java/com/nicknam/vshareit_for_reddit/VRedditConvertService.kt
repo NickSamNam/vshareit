@@ -46,8 +46,8 @@ class VRedditConvertService : IntentService("VRedditConvertService") {
             else -> Log.e(Config.TAG, String.format("Command execution failed with rc=%d and output=%s.", rc, co))
         }
 
-        val resultReceiver: ResultReceiver = intent.getParcelableExtra(EXTRA_RESULT_RECEIVER)
-        resultReceiver.send(rc, Bundle().apply {
+        val resultReceiver: ResultReceiver? = intent.getParcelableExtra(EXTRA_RESULT_RECEIVER)
+        resultReceiver?.send(rc, Bundle().apply {
             putString(KEY_COMMAND_OUTPUT, co)
             putParcelable(KEY_CONTENT_URI, contentUri)
         })
