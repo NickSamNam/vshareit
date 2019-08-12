@@ -79,12 +79,14 @@
             app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp" android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toStartOf="@+id/btn_share" android:layout_marginRight="8dp"
             android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/tv_or"
-            android:hint="@string/et_url_hint" android:importantForAutofill="no" tools:targetApi="o"/>
+            android:hint="@string/et_url_hint" android:importantForAutofill="no" tools:targetApi="o"
+            android:imeActionLabel="@string/btn_share" android:imeOptions="actionGo"/>
     <Button
             android:text="@string/btn_share"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/btn_share" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            app:layout_constraintTop_toTopOf="@+id/et_url" app:layout_constraintBottom_toBottomOf="@+id/et_url"/>
+            app:layout_constraintTop_toTopOf="@+id/et_url" app:layout_constraintBottom_toBottomOf="@+id/et_url"
+    />
 </androidx.constraintlayout.widget.ConstraintLayout>
