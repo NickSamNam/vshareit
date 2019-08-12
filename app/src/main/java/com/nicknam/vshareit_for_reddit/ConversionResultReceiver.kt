@@ -17,10 +17,6 @@ class ConversionResultReceiver(handler: Handler?) : ResultReceiver(handler) {
         receivers += receiver
     }
 
-    fun unsubscribe(receiver: Receiver) {
-        receivers -= receiver
-    }
-
     override fun onReceiveResult(resultCode: Int, resultData: Bundle?) {
         receivers.forEach { it.onCompletion(resultCode, resultData?.getString(KEY_COMMAND_OUTPUT) ?: "", resultData?.getParcelable<Uri>(KEY_CONTENT_URI)) }
     }

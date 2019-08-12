@@ -7,7 +7,10 @@ import android.net.Uri
 import android.os.Handler
 import android.widget.Toast
 import com.arthenica.mobileffmpeg.FFmpeg
-import com.nicknam.vshareit_for_reddit.*
+import com.nicknam.vshareit_for_reddit.CheckHttpConnectionAsyncTask
+import com.nicknam.vshareit_for_reddit.ConversionResultReceiver
+import com.nicknam.vshareit_for_reddit.R
+import com.nicknam.vshareit_for_reddit.VRedditConvertService
 import com.nicknam.vshareit_for_reddit.VRedditConvertService.Companion.EXTRA_RESULT_RECEIVER
 
 fun share(context: Context, url: String) {

@@ -11,7 +11,6 @@ class ShareActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_share)
         window.addFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
         when (intent?.action) {
