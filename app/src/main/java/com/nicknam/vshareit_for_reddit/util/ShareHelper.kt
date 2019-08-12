@@ -6,9 +6,10 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Handler
 import android.widget.Toast
-import com.arthenica.mobileffmpeg.FFmpeg
 import com.nicknam.vshareit_for_reddit.CheckHttpConnectionAsyncTask
 import com.nicknam.vshareit_for_reddit.ConversionResultReceiver
+import com.nicknam.vshareit_for_reddit.ConversionResultReceiver.Companion.RESULT_CODE_FETCHED_FROM_CACHE
+import com.nicknam.vshareit_for_reddit.ConversionResultReceiver.Companion.RESULT_CODE_FETCHED_FROM_SOURCE
 import com.nicknam.vshareit_for_reddit.R
 import com.nicknam.vshareit_for_reddit.VRedditConvertService
 import com.nicknam.vshareit_for_reddit.VRedditConvertService.Companion.EXTRA_RESULT_RECEIVER
@@ -24,9 +25,9 @@ fun share(context: Context, url: String) {
                     Toast.makeText(context, R.string.toast_fetching_video, Toast.LENGTH_SHORT).show()
                     val resultReceiver = ConversionResultReceiver(Handler()).apply {
                         subscribe(object: ConversionResultReceiver.Receiver {
-                            override fun onCompletion(returnCode: Int, commandOutput: String, contentUri: Uri?) {
-                                when (returnCode) {
-                                    FFmpeg.RETURN_CODE_SUCCESS -> {
+                            override fun onCompletion(resultCode: Int, contentUri: Uri?) {
+                                when (resultCode) {
+                                    RESULT_CODE_FETCHED_FROM_SOURCE, RESULT_CODE_FETCHED_FROM_CACHE -> {
                                         val shareIntent: Intent = Intent().apply {
                                             action = Intent.ACTION_SEND
                                             putExtra(Intent.EXTRA_STREAM, contentUri)
