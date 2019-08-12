@@ -30,6 +30,7 @@ class VRedditConvertService : IntentService("VRedditConvertService") {
         val inputUri: Uri = intent.getParcelableExtra<Uri>(Intent.EXTRA_STREAM) ?: return
         val filename = inputUri.pathSegments.first() + ".mp4"
         val videoCachePath = File(externalCacheDir ?: cacheDir, "videos")
+        videoCachePath.mkdirs()
         val outputFile = File(videoCachePath, filename)
         val outputUri = Uri.fromFile(outputFile)
         val contentUri: Uri = FileProvider.getUriForFile(baseContext, FILE_PROVIDER_AUTHORITY, outputFile)
