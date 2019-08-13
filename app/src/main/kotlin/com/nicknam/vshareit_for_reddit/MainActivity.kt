@@ -11,15 +11,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.nicknam.vshareit_for_reddit.util.share
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var btnShare: Button
-    private lateinit var etUrl: EditText
+    private val btnShare by lazy { findViewById<Button>(R.id.btn_share) }
+    private val etUrl by lazy { findViewById<EditText>(R.id.et_url) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        btnShare = findViewById(R.id.btn_share)
-        etUrl = findViewById(R.id.et_url)
 
         btnShare.setOnClickListener(this::onShareClick)
         etUrl.setOnEditorActionListener(this::onUrlEditorAction)
