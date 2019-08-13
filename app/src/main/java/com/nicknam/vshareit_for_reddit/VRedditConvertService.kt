@@ -119,19 +119,22 @@ class VRedditConvertService : IntentService("VRedditConvertService") {
         files.sortBy { it.lastModified() }
         var totalSize = files.map { it.length() }.sum()
         files = files.dropLast(N_MIN_AMOUNT_CACHED).toMutableList()
+        val currentTime = System.currentTimeMillis()
         files.forEach {
-            if (totalSize <= CACHE_SIZE_LIMIT)
-                return
-            val fileSize = it.length()
-            if (deleteFile(it))
-                totalSize -= fileSize
+            if (totalSize > CACHE_SIZE_LIMIT || (currentTime - it.lastModified()) > CACHE_EXPIRE_TIME) {
+                val fileSize = it.length()
+                if (deleteFile(it))
+                    totalSize -= fileSize
+            }
         }
     }
 
     companion object {
         private const val TAG = "VRedditConvertService"
+        private const val CACHE_SIZE_LIMIT = 104857600L
+        private const val CACHE_EXPIRE_TIME = 31*24*60*60*1000L
+        private const val N_MIN_AMOUNT_CACHED = 1
+
         const val EXTRA_RESULT_RECEIVER = "RESULT_RECEIVER"
-        const val CACHE_SIZE_LIMIT = 104857600L
-        const val N_MIN_AMOUNT_CACHED = 1
     }
 }
