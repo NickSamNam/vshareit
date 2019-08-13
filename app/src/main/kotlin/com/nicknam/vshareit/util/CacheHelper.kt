@@ -30,6 +30,8 @@ class CacheHelper(private val storageLocations: List<File?>) {
 
     fun getVideoFile(filename: String): Pair<File?, Boolean> {
         for (storageLocation in storageLocations) {
+            if (storageLocation == null)
+                continue
             val videoCachePath = File(storageLocation, VIDEOS_DIR_NAME)
             try {
                 videoCachePath.mkdirs()
@@ -46,6 +48,7 @@ class CacheHelper(private val storageLocations: List<File?>) {
             }
             return Pair(outputFile, preexisting)
         }
+        Log.e(TAG, "No storage location available.")
         return Pair(null, false)
     }
 

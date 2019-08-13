@@ -34,8 +34,17 @@ class VRedditConvertService : IntentService("VRedditConvertService") {
             resultReceiver?.send(ConversionResultReceiver.RESULT_CODE_STORAGE_ERROR, Bundle())
             return
         }
+        Log.i(TAG, "Output file: $outputFile")
         val outputUri = Uri.fromFile(outputFile)
-        val contentUri: Uri = FileProvider.getUriForFile(baseContext, FILE_PROVIDER_AUTHORITY, outputFile)
+        Log.i(TAG, "Output URI: $outputUri")
+        val contentUri: Uri = try {
+            FileProvider.getUriForFile(baseContext, FILE_PROVIDER_AUTHORITY, outputFile)
+        } catch (e: IllegalArgumentException) {
+            Log.e(TAG, "File is outside the paths supported by the provider.")
+            resultReceiver?.send(ConversionResultReceiver.RESULT_CODE_STORAGE_ERROR, Bundle())
+            return
+        }
+        Log.i(TAG, "Content URI: $contentUri")
 
         val resultCode = if (preexisting) {
             Log.i(TAG, "Video fetched from cache.")
