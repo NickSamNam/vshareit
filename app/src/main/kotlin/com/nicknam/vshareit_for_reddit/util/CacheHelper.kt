@@ -61,7 +61,7 @@ class CacheHelper(private val storageLocations: List<File?>) {
     companion object {
         private const val TAG = "CacheHelper"
         private const val CACHE_SIZE_LIMIT = 104857600L
-        private const val CACHE_EXPIRE_TIME = 7*24*60*60*1000L
+        private const val CACHE_EXPIRE_TIME = 7 * 24 * 60 * 60 * 1000L
         private const val N_MIN_AMOUNT_CACHED = 1
 
         const val VIDEOS_DIR_NAME = "videos"

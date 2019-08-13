@@ -24,7 +24,7 @@ fun share(context: Context, url: String) {
                 200 -> {
                     Toast.makeText(context, R.string.toast_fetching_video, Toast.LENGTH_SHORT).show()
                     val resultReceiver = ConversionResultReceiver(Handler()).apply {
-                        subscribe(object: ConversionResultReceiver.Receiver {
+                        subscribe(object : ConversionResultReceiver.Receiver {
                             override fun onCompletion(resultCode: Int, contentUri: Uri?) {
                                 when (resultCode) {
                                     RESULT_CODE_FETCHED_FROM_SOURCE, RESULT_CODE_FETCHED_FROM_CACHE -> {
@@ -33,9 +33,13 @@ fun share(context: Context, url: String) {
                                             putExtra(Intent.EXTRA_STREAM, contentUri)
                                             type = "video/mp4"
                                         }
-                                        (context as Activity).startActivity(Intent.createChooser(shareIntent, context.resources.getText(R.string.share_label)).apply {
-                                            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                                        })
+                                        (context as Activity).startActivity(
+                                            Intent.createChooser(
+                                                shareIntent,
+                                                context.resources.getText(R.string.share_label)
+                                            ).apply {
+                                                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                            })
                                     }
                                     else -> {
                                         Toast.makeText(context, R.string.toast_ffmpeg_error, Toast.LENGTH_SHORT).show()
