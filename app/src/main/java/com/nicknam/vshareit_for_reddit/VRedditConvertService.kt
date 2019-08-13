@@ -132,7 +132,7 @@ class VRedditConvertService : IntentService("VRedditConvertService") {
     companion object {
         private const val TAG = "VRedditConvertService"
         private const val CACHE_SIZE_LIMIT = 104857600L
-        private const val CACHE_EXPIRE_TIME = 31*24*60*60*1000L
+        private const val CACHE_EXPIRE_TIME = 7*24*60*60*1000L
         private const val N_MIN_AMOUNT_CACHED = 1
 
         const val EXTRA_RESULT_RECEIVER = "RESULT_RECEIVER"
