@@ -1,4 +1,4 @@
-package com.nicknam.vshareit_for_reddit
+package com.nicknam.vshareit
 
 import android.net.Uri
 import android.os.Bundle

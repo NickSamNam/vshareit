@@ -1,4 +1,4 @@
-package com.nicknam.vshareit_for_reddit
+package com.nicknam.vshareit
 
 import android.app.IntentService
 import android.content.Intent
@@ -9,7 +9,7 @@ import android.util.Log
 import androidx.core.content.FileProvider
 import com.arthenica.mobileffmpeg.Config
 import com.arthenica.mobileffmpeg.FFmpeg
-import com.nicknam.vshareit_for_reddit.util.CacheHelper
+import com.nicknam.vshareit.util.CacheHelper
 
 private const val FILE_PROVIDER_AUTHORITY = "com.nicknam.fileprovider"
 

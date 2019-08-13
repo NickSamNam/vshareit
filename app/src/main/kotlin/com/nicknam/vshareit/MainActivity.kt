@@ -1,4 +1,4 @@
-package com.nicknam.vshareit_for_reddit
+package com.nicknam.vshareit
 
 import android.os.Bundle
 import android.view.KeyEvent
@@ -8,7 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.nicknam.vshareit_for_reddit.util.share
+import com.nicknam.vshareit.util.share
 
 class MainActivity : AppCompatActivity() {
     private val btnShare by lazy { findViewById<Button>(R.id.btn_share) }

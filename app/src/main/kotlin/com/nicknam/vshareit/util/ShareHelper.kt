@@ -1,4 +1,4 @@
-package com.nicknam.vshareit_for_reddit.util
+package com.nicknam.vshareit.util
 
 import android.app.Activity
 import android.content.Context
@@ -6,13 +6,13 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Handler
 import android.widget.Toast
-import com.nicknam.vshareit_for_reddit.CheckHttpConnectionAsyncTask
-import com.nicknam.vshareit_for_reddit.ConversionResultReceiver
-import com.nicknam.vshareit_for_reddit.ConversionResultReceiver.Companion.RESULT_CODE_FETCHED_FROM_CACHE
-import com.nicknam.vshareit_for_reddit.ConversionResultReceiver.Companion.RESULT_CODE_FETCHED_FROM_SOURCE
-import com.nicknam.vshareit_for_reddit.R
-import com.nicknam.vshareit_for_reddit.VRedditConvertService
-import com.nicknam.vshareit_for_reddit.VRedditConvertService.Companion.EXTRA_RESULT_RECEIVER
+import com.nicknam.vshareit.CheckHttpConnectionAsyncTask
+import com.nicknam.vshareit.ConversionResultReceiver
+import com.nicknam.vshareit.ConversionResultReceiver.Companion.RESULT_CODE_FETCHED_FROM_CACHE
+import com.nicknam.vshareit.ConversionResultReceiver.Companion.RESULT_CODE_FETCHED_FROM_SOURCE
+import com.nicknam.vshareit.R
+import com.nicknam.vshareit.VRedditConvertService
+import com.nicknam.vshareit.VRedditConvertService.Companion.EXTRA_RESULT_RECEIVER
 
 fun share(context: Context, url: String) {
     val downloadUri = generateDownloadUri(url)

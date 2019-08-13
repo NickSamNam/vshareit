@@ -1,1 +1,1 @@
-vshareit_for_reddit
+vshareit

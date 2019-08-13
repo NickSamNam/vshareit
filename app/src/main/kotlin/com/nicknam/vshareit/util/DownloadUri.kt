@@ -1,4 +1,4 @@
-package com.nicknam.vshareit_for_reddit.util
+package com.nicknam.vshareit.util
 
 import android.net.Uri
 import android.util.Patterns

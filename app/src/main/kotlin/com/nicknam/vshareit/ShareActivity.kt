@@ -1,10 +1,10 @@
-package com.nicknam.vshareit_for_reddit
+package com.nicknam.vshareit
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import com.nicknam.vshareit_for_reddit.util.share
+import com.nicknam.vshareit.util.share
 
 
 class ShareActivity : AppCompatActivity() {
