@@ -1,10 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-        package="com.example.vshareit_for_reddit">
+          xmlns:tools="http://schemas.android.com/tools"
+          package="com.nicknam.vshareit"
+          android:installLocation="auto">
 
-    <application android:allowBackup="true"
-        android:label="@string/app_name"
-        android:icon="@mipmap/ic_launcher"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:allowBackup="false"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme"
+            tools:ignore="GoogleAppIndexingWarning">
+
+        <activity android:name=".SplashScreenActivity"
+                  android:theme="@style/SplashScreenTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".MainActivity"
+                  android:windowSoftInputMode="stateUnchanged|adjustResize"/>
+
+        <activity android:name=".ShareActivity"
+                  android:launchMode="singleTask"
+                  android:taskAffinity=""
+                  android:excludeFromRecents="true"
+                  android:noHistory="true"
+                  android:theme="@style/Theme.Transparent">
+
+            <intent-filter android:label="@string/send_action_label">
+                <action android:name="android.intent.action.SEND"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="text/plain"/>
+            </intent-filter>
+
+            <intent-filter android:label="@string/send_action_label">
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="v.redd.it" android:scheme="http"/>
+                <data android:host="v.redd.it" android:scheme="https"/>
+            </intent-filter>
+        </activity>
+
+        <service
+                android:name=".VRedditConvertService"
+                android:exported="false">
+        </service>
+
+        <provider
+                android:name="androidx.core.content.FileProvider"
+                android:authorities="com.nicknam.fileprovider"
+                android:exported="false"
+                android:grantUriPermissions="true">
+            <meta-data
+                    android:name="android.support.FILE_PROVIDER_PATHS"
+                    android:resource="@xml/file_paths"/>
+        </provider>
+    </application>
+
 </manifest>

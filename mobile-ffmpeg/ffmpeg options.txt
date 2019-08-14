@@ -1,0 +1,18 @@
+./ffmpeg -i "https://v.redd.it/o96gc55jq6f31/DASHPlaylist.mpd" -c copy -bsf:a aac_adtstoasc "output.mp4"
+
+./configure \
+--enable-gnutls \
+--enable-libxml2 \
+--enable-shared \
+
+    --disable-everything \
+    --enable-protocol=https \
+    --enable-protocol=http \
+    --enable-protocol=file \
+    --enable-bsf=aac_adtstoasc \
+    --enable-parser=h264 \
+    --enable-parser=aac \
+    --enable-demuxer=dash \
+    --enable-demuxer=pcm_u24be \
+    --enable-demuxer=sap \
+    --enable-muxer=mp4 \
