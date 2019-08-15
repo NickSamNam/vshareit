@@ -5,6 +5,7 @@
     <string name="toast_invalid_url">Invalid URL</string>
     <string name="toast_video_not_found">Video not found</string>
     <string name="toast_server_error">Server error</string>
+    <string name="toast_network_error">Network error</string>
     <string name="toast_fetching_video">Fetching video…</string>
     <string name="toast_ffmpeg_error">Error fetching video</string>
     <string name="tv_instructions">Instructions:</string>

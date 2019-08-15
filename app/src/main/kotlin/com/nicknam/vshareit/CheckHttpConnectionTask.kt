@@ -5,7 +5,7 @@ import java.io.IOException
 import java.net.HttpURLConnection
 import java.net.URL
 
-class CheckHttpConnectionAsyncTask(private val callback: (responseCode: Int?) -> Unit) :
+class CheckHttpConnectionTask(private val callback: (responseCode: Int?) -> Unit) :
     AsyncTask<String, Void, Int>() {
 
     override fun doInBackground(vararg params: String?): Int {
@@ -14,7 +14,7 @@ class CheckHttpConnectionAsyncTask(private val callback: (responseCode: Int?) ->
         return try {
             connection.responseCode
         } catch (e: IOException) {
-            -1
+            -2
         }
     }
 
