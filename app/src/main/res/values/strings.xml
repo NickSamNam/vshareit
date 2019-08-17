@@ -10,7 +10,7 @@
     <string name="toast_ffmpeg_error">Error fetching video</string>
     <string name="tv_instructions">Instructions:</string>
     <string name="tv_instruction_one">1. Share v.redd.it link</string>
-    <string name="tv_instruction_two">2. Select v.redd.it handler in the share menu</string>
+    <string name="tv_instruction_two">2. Select \"v.redd.it handler\" in the share menu</string>
     <string name="tv_instruction_three">3. Share with your favorite app</string>
     <string name="tv_or">Or</string>
     <string name="et_url_hint">Paste your v.redd.it link here</string>
